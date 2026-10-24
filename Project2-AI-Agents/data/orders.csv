@@ -1,0 +1,21 @@
+order_id,customer_id,order_date,status,est_delivery,delivered_date,last_scan_date,item,subtotal_eur,shipping_fee_eur,final_sale,in_stock_for_replacement
+O-1001,C001,2026-10-05,delivered,2026-10-09,2026-10-09,2026-10-09,Trail socks 3-pack,39.90,4.95,false,true
+O-1002,C001,2026-10-01,in_transit,2026-10-09,,2026-10-11,Rain shell jacket,54.00,4.95,false,true
+O-1003,C002,2026-09-20,delivered,2026-09-24,2026-09-24,2026-09-24,Hiking boots,120.00,0.00,false,true
+O-1004,C003,2026-10-10,delivered,2026-10-14,2026-10-14,2026-10-14,2-person tent,249.00,0.00,false,true
+O-1005,C004,2026-10-02,delivered,2026-10-06,2026-10-06,2026-10-06,Down jacket,389.00,0.00,false,true
+O-1006,C005,2026-08-28,delivered,2026-09-02,2026-09-02,2026-09-02,Water bottle set,45.00,4.95,false,true
+O-1007,C006,2026-10-11,delivered,2026-10-15,2026-10-15,2026-10-15,Wool sweater,74.50,0.00,false,true
+O-1008,C007,2026-10-18,processing,2026-10-23,,,Camp stove,58.00,4.95,false,true
+O-1009,C008,2026-09-18,delivered,2026-09-22,2026-09-22,2026-09-22,Rechargeable headlamp,89.00,0.00,false,true
+O-1010,C001,2026-09-30,delivered,2026-10-03,2026-10-03,2026-10-03,Clearance thermal gloves,24.00,4.95,true,false
+O-1011,C004,2026-10-08,delivered,2026-10-12,2026-10-12,2026-10-12,Trail gloves (size M ordered; size S shipped),75.00,0.00,false,true
+O-1012,C002,2026-10-14,delivered,2026-10-17,2026-10-17,2026-10-17,Merino beanie,35.00,4.95,false,true
+O-1013,C003,2026-10-15,delivered,2026-10-18,2026-10-18,2026-10-18,Trekking pole tips,29.00,4.95,false,true
+O-1014,C005,2026-10-15,delivered,2026-10-19,2026-10-19,2026-10-19,Insulated mug,50.00,4.95,false,true
+O-1015,C008,2026-10-14,delivered,2026-10-18,2026-10-18,2026-10-18,Compass set,50.01,4.95,false,true
+O-1016,C007,2026-09-25,in_transit,2026-09-30,,2026-09-30,Sleeping bag liner,79.00,0.00,false,true
+O-1017,C009,2026-09-08,delivered,2026-09-12,2026-09-12,2026-09-12,Hiking socks,42.00,4.95,false,true
+O-1018,C010,2026-03-06,delivered,2026-03-10,2026-03-10,2026-03-10,Fleece jacket,129.00,0.00,false,true
+O-1019,C009,2026-10-19,processing,2026-10-24,,,Travel towel,62.00,0.00,false,true
+O-1020,C005,2026-10-12,in_transit,2026-10-15,,2026-10-17,Hydration pack,38.00,4.95,false,true

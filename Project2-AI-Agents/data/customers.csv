@@ -1,0 +1,11 @@
+customer_id,name,email,language,fraud_flag,created_at
+C001,Anna Visser,anna@example.com,en,false,2025-11-02
+C002,Ben Jansen,ben@example.com,en,false,2025-03-18
+C003,Carla Smit,carla@example.com,en,true,2026-02-09
+C004,Dev Patel,dev@example.com,en,false,2024-06-21
+C005,Eva Bakker,eva@example.com,en,false,2026-08-27
+C006,Femke de Boer,femke@example.nl,nl,false,2026-10-11
+C007,Gus Mulder,gus@example.com,en,false,2026-09-24
+C008,Hana Tanaka,hana@example.com,en,false,2026-09-17
+C009,Ivo Peters,ivo@example.com,en,false,2026-08-30
+C010,Jonas Weber,jonas@example.com,en,false,2025-12-04

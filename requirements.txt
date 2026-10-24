@@ -1,0 +1,23 @@
+# Azure SDKs
+azure-search-documents>=11.6.0b1
+azure-ai-documentintelligence>=1.0.0
+azure-ai-projects>=1.0.0b1
+azure-identity>=1.17.1
+azure-core>=1.30.0
+
+# OpenAI & Models
+openai>=1.50.0
+tiktoken>=0.7.0
+
+# Data & Environment Utilities
+python-dotenv>=1.0.1
+pydantic>=2.8.0
+tqdm>=4.66.0
+
+# Jupyter Notebook support
+ipykernel>=6.29.0
+jupyter>=1.0.0
+
+azure-ai-contentunderstanding
+azure-identity
+cohere>=5.0.0

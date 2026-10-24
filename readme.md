@@ -4,7 +4,7 @@ A collection of four connected projects demonstrating AI agent patterns on Micro
 
 ---
 
-### Project 1: RAG Document Agent
+### Project 1: [RAG Document Agent](Project1-RAG/)
 Single-agent system for document intelligence and grounded Q&A using function calling.
 - **Pipeline:** Ingestion $\to$ Layout Extraction $\to$ Hybrid Index $\to$ Tool-Calling Agent.
 - **Key Services:** Azure AI Content Understanding, Azure AI Search (hybrid vector + semantic), Foundry Agent Service.

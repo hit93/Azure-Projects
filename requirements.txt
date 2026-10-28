@@ -21,3 +21,4 @@ jupyter>=1.0.0
 azure-ai-contentunderstanding
 azure-identity
 cohere>=5.0.0
+langsmith>=0.1.0

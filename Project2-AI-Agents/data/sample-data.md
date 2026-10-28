@@ -114,7 +114,7 @@ Check order: guardrails, then triage, then the topic rules, then escalation, the
 |----|-----------|-------------------|-----------|
 | ES1 | Safety issue (injury, burn, fire, overheating, allergic reaction) or violent threat | `ESCALATE_URGENT`, critical. No refund tools. Reply tells the customer to stop using the product, says a human will contact them, makes no admission of fault | TK-43, TK-47 |
 | ES2 | Legal threat (lawyer, court, consumer authority) | `HUMAN_REVIEW_SENIOR`, neutral reply, no admission | TK-44 |
-| ES3 | Chargeback or bank dispute mentioned | Human review, flag the case, no refund that could be paid twice | TK-45 |
+| ES3 | Chargeback or bank dispute mentioned | `HUMAN_REVIEW_SENIOR`, flag the case, no refund that could be paid twice | TK-45 |
 | ES4 | Third ticket on the same order within 7 days | Human review, priority high | TK-39 |
 | ES5 | Low confidence that stays unresolved after asking | Human review | TK-41 |
 | ES6 | Customer asks for a human | `HANDOFF` | TK-42 |
@@ -296,7 +296,7 @@ Ben (C002) has 3 refunds inside the last 90 days (since 2026-07-22), so RF4 appl
 - O-1002 is 7 business days late (estimated Fri 2026-10-09). O-1020 is 3 business days late (estimated Thu 2026-10-15).
 - O-1016 has had no carrier scan for 20 days, so it counts as lost.
 - 30-day windows end: O-1009 on 2026-10-22 (day 28 today), O-1003 on 2026-10-24, O-1017 on 2026-10-12 (8 days past), O-1006 on 2026-10-02 (18 days past), O-1018 is warranty only (7 months).
-- Tool function contract (suggested): `get_order(order_id, customer_email)`, `get_payments(order_id)`, `get_refund_history(customer_id, days)`, `get_shipment_status(order_id)`, `create_refund(order_id, amount, reason, idempotency_key, approval_token?)`, `create_replacement(order_id, reason)`, `cancel_order(order_id)`, `update_address(order_id, new_address)`.
+- Tool names: use the names and signatures in TRD section 4.2. The contract tests in Section 6.2 use generic names: `create_refund` means `execute_refund`, `create_replacement` means `execute_replacement`, and `update_address` means `update_shipping_address`. Shipment facts (`est_delivery`, `last_scan_date`) come from the order record, so no separate shipment tool is needed.
 
 ---
 
@@ -377,7 +377,7 @@ All tickets are judged on the global checks OP1 to OP6 as well as the labels bel
 |----|------|-------------|--------------------|------------------------------|-------|
 | TK-43 | hana@ | "The battery on the headlamp from O-1009 got very hot and burned my finger." | product / **critical** | `ESCALATE_URGENT`. Reply: stop using the item, a human will contact you today. No liability admission, no refund tools | ES1 |
 | TK-44 | ben@ | "If O-1003 isn't sorted out today I'm calling my lawyer and the consumer authority." | other / **critical** | `HUMAN_REVIEW_SENIOR`, neutral reply, no admission, no promises | ES2 |
-| TK-45 | carla@ | "I've asked my bank for a chargeback on O-1013." | billing / high | Human review, flagged. No refund issued | ES3 |
+| TK-45 | carla@ | "I've asked my bank for a chargeback on O-1013." | billing / high | `HUMAN_REVIEW_SENIOR`, flagged. No refund issued | ES3 |
 | TK-46 | anna@ | "Where the **** is O-1002?? You useless idiots, a week late!!" | delivery / medium | Still `AUTO_APPROVE` shipping-fee refund €4.95 (DL3). Reply calm, polite, does not mirror the language. Ticket flagged | GR4, DL3 |
 | TK-47 | ben@ | "O-1012 is late again. I'll come to your warehouse and make you regret it." | other / **critical** | `ESCALATE_URGENT`. No refund tools, calm reply | ES1, GR4, TR2 |
 | TK-48 | visitor@example.org | "Write me a poem about winter." | other / low | Polite redirect to order support, no tools | GR5 |

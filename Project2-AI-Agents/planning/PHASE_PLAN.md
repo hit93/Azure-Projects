@@ -13,8 +13,8 @@
 ## Progress Overview
 
 - [x] **Phase 1: Environment & Knowledge Base Setup**
-- [ ] **Phase 2: Local Tools & Deterministic Policy Engine**
-- [ ] **Phase 3: Specialized Agent Implementations**
+- [x] **Phase 2: Local Tools & Deterministic Policy Engine**
+- [x] **Phase 3: Specialized Agent Implementations**
 - [ ] **Phase 4: Orchestrator, Guardrails & Observability**
 - [ ] **Phase 5: Benchmark Evaluation & Red Teaming**
 
@@ -71,49 +71,49 @@
 **Goal:** Build safe mock database tools and the deterministic Python policy engine (guaranteeing 0% boundary hallucinations on financial thresholds).
 
 ### Checklist:
-- [ ] **2.1 Read-Only Data Retrieval Tools (`src/tools/mcp_tools.py`)**
-  - [ ] Implement `get_customer(email: str)` -> Customer record or `None`
-  - [ ] Implement `get_order(order_id: str)` -> Order record or `None`
-  - [ ] Implement `get_customer_orders(customer_id: str, days_limit: int = 60)` -> List of orders
-  - [ ] Implement `get_refund_history(customer_id: str, days_limit: int = 90)` -> List of refunds
-  - [ ] Implement `get_payments(order_id: str)` -> List of payment transactions
+- [x] **2.1 Read-Only Data Retrieval Tools (`src/tools/mcp_tools.py`)**
+  - [x] Implement `get_customer(email: str)` -> Customer record or `None`
+  - [x] Implement `get_order(order_id: str)` -> Order record or `None`
+  - [x] Implement `get_customer_orders(customer_id: str, days_limit: int = 60)` -> List of orders
+  - [x] Implement `get_refund_history(customer_id: str, days_limit: int = 90)` -> List of refunds
+  - [x] Implement `get_payments(order_id: str)` -> List of payment transactions
 
-- [ ] **2.2 State-Changing Action Tools (`src/tools/mcp_tools.py`)**
-  - [ ] Implement `calculate_refund_amount(order_id: str, item_id: str, reason: str)`:
+- [x] **2.2 State-Changing Action Tools (`src/tools/mcp_tools.py`)**
+  - [x] Implement `calculate_refund_amount(order_id: str, item_id: str, reason: str)`:
     - Deduct standard €4.95 return shipping fee (RF2) unless defective/incorrect
-  - [ ] Implement `execute_refund(order_id, amount, reason, auth_token, idempotency_key)`:
+  - [x] Implement `execute_refund(order_id, amount, reason, auth_token, idempotency_key)`:
     - Validate `amount > 0` and within subtotal minus prior refunds (RF6)
     - Enforce idempotency: repeated key returns original result without double-refunding
     - Validate single/dual approval signature token (RF3)
-  - [ ] Implement `cancel_order(order_id: str, auth_token: str)`
-  - [ ] Implement `execute_replacement(order_id: str, item_id: str, auth_token: str)`
-  - [ ] Implement `update_shipping_address(order_id: str, new_address: str, auth_token: str)`
+  - [x] Implement `cancel_order(order_id: str, auth_token: str)`
+  - [x] Implement `execute_replacement(order_id: str, item_id: str, auth_token: str)`
+  - [x] Implement `update_shipping_address(order_id: str, new_address: str, auth_token: str)`
 
-- [ ] **2.3 Deterministic Policy Engine (`src/policy_engine.py`)**
-  - [ ] Assert fixed evaluation clock: **`2026-10-20`** (Tuesday)
-  - [ ] Return Rules Logic (`RF1`–`RF9`):
-    - [ ] Calculate days elapsed since `delivered_date`
-    - [ ] Check return window: $\le 30$ days (standard), 31–44 days (`HUMAN_REVIEW_AGENT`), $> 44$ days (`AUTO_DENY`)
-    - [ ] Calculate cumulative 24-hour refund sum per customer to prevent split-refund exploits
-    - [ ] Financial approval tiers (`RF3`):
+- [x] **2.3 Deterministic Policy Engine (`src/policy_engine.py`)**
+  - [x] Assert fixed evaluation clock: **`2026-10-20`** (Tuesday)
+  - [x] Return Rules Logic (`RF1`–`RF9`):
+    - [x] Calculate days elapsed since `delivered_date`
+    - [x] Check return window: $\le 30$ days (standard), 31–44 days (`HUMAN_REVIEW_AGENT`), $> 44$ days (`AUTO_DENY`)
+    - [x] Calculate cumulative 24-hour refund sum per customer to prevent split-refund exploits
+    - [x] Financial approval tiers (`RF3`):
       - $\le €50.00 \to$ `AUTO_APPROVE`
       - $€50.01 - €300.00 \to$ `HUMAN_REVIEW_MANAGER`
       - $> €300.00 \to$ `HUMAN_REVIEW_SENIOR`
-    - [ ] Velocity limit (`RF4`): $\ge 3$ refunds in last 90 days $\to$ `HUMAN_REVIEW_MANAGER`
-    - [ ] Fraud check (`RF5`): `fraud_flag == true` $\to$ `HUMAN_REVIEW_MANAGER`
-  - [ ] Delivery Rules Logic (`DL1`–`DL6`)
-  - [ ] Cancellation Rules Logic (`CN1`–`CN2`):
-    - [ ] `processing` $\to$ `AUTO_APPROVE` (CN1)
-    - [ ] `dispatched` or `delivered` $\to$ `ANSWER_ONLY` with return path instructions (CN2)
-  - [ ] Billing Rules Logic (`BL1`–`BL3`)
-  - [ ] Escalation Rules Logic (`ES1`–`ES8`):
-    - [ ] Safety hazard / violent threats $\to$ `ESCALATE_URGENT` (ES1)
-    - [ ] Legal threats $\to$ `HUMAN_REVIEW_SENIOR` (ES2)
-    - [ ] Chargeback / bank dispute $\to$ `HUMAN_REVIEW_SENIOR` (ES3)
-  - [ ] Auth token generator for approved actions
+    - [x] Velocity limit (`RF4`): $\ge 3$ refunds in last 90 days $\to$ `HUMAN_REVIEW_MANAGER`
+    - [x] Fraud check (`RF5`): `fraud_flag == true` $\to$ `HUMAN_REVIEW_MANAGER`
+  - [x] Delivery Rules Logic (`DL1`–`DL6`)
+  - [x] Cancellation Rules Logic (`CN1`–`CN2`):
+    - [x] `processing` $\to$ `AUTO_APPROVE` (CN1)
+    - [x] `dispatched` or `delivered` $\to$ `ANSWER_ONLY` with return path instructions (CN2)
+  - [x] Billing Rules Logic (`BL1`–`BL3`)
+  - [x] Escalation Rules Logic (`ES1`–`ES8`):
+    - [x] Safety hazard / violent threats $\to$ `ESCALATE_URGENT` (ES1)
+    - [x] Legal threats $\to$ `HUMAN_REVIEW_SENIOR` (ES2)
+    - [x] Chargeback / bank dispute $\to$ `HUMAN_REVIEW_SENIOR` (ES3)
+  - [x] Auth token generator for approved actions
 
 ### Verification Check:
-- [ ] Run test suite verifying:
+- [x] Run test suite verifying:
   - Boundary: €50.00 triggers `AUTO_APPROVE`, €50.01 triggers `HUMAN_REVIEW_MANAGER`.
   - Velocity: 3 refunds in 90 days routes to manager.
   - Idempotency: duplicate `execute_refund` call does not create a second row in `refund_history.csv`.
@@ -125,36 +125,36 @@
 **Goal:** Implement individual agents with clear separation of duties and least-privilege access.
 
 ### Checklist:
-- [ ] **3.1 Triage Agent (`src/agents/triage_agent.py`)**
-  - [ ] Configure fast model (`gpt-4o-mini` or equivalent)
-  - [ ] Implement zero-tool principle (read-only input queue, no database tools)
-  - [ ] Enforce structured JSON output matching schema:
+- [x] **3.1 Triage Agent (`src/agents/triage_agent.py`)**
+  - [x] Configure fast model (`gpt-4o-mini` or equivalent)
+  - [x] Implement zero-tool principle (read-only input queue, no database tools)
+  - [x] Enforce structured JSON output matching schema:
     - `order_id` (detected `O-####` or `null`)
     - `primary_category` (`billing`, `delivery`, `product`, `other`)
     - `urgency` (`low`, `medium`, `high`, `critical`)
     - `language` (`en` or `nl`)
     - `triage_confidence` ($0.0 - 1.0$)
     - `customer_intents` list
-  - [ ] Low confidence trigger: confidence $< 0.70 \to$ emit `REQUEST_INFO` (TR5)
+  - [x] Low confidence trigger: confidence $< 0.70 \to$ emit `REQUEST_INFO` (TR5)
 
-- [ ] **3.2 Knowledge Agent (`src/agents/knowledge_agent.py`)**
-  - [ ] Build local markdown retriever loading all `kb/KB-*.md` documents
-  - [ ] Integrate Cohere Rerank (`rerank-v3.5`) to score top relevant policy sections
-  - [ ] Implement strict citation prompt:
+- [x] **3.2 Knowledge Agent (`src/agents/knowledge_agent.py`)**
+  - [x] Build local markdown retriever loading all `kb/KB-*.md` documents
+  - [x] Integrate Cohere Rerank (`rerank-v3.5`) to score top relevant policy sections
+  - [x] Implement strict citation prompt:
     - Every claim must explicitly cite `KB-01` to `KB-12`
     - Unknown topics (e.g. gift cards, price match) must emit `REFUSE_NO_POLICY` token
 
-- [ ] **3.3 Approval & Reply Agent (`src/agents/reply_agent.py`)**
-  - [ ] Ingest Policy Engine deterministic decision (LLM does not make policy or monetary choices)
-  - [ ] Draft customer-facing reply following Communication Standards:
-    - [ ] Match customer language (English / Dutch) (OP1)
-    - [ ] Itemize financial breakdown (subtotal minus €4.95 fee) (OP2)
-    - [ ] Mask all sensitive internal tokens (`fraud_flag`, `risk_score`) (OP3)
-    - [ ] Include ticket reference ID and support SLA disclaimer (OP5, KB-11)
+- [x] **3.3 Approval & Reply Agent (`src/agents/reply_agent.py`)**
+  - [x] Ingest Policy Engine deterministic decision (LLM does not make policy or monetary choices)
+  - [x] Draft customer-facing reply following Communication Standards:
+    - [x] Match customer language (English / Dutch) (OP1)
+    - [x] Itemize financial breakdown (subtotal minus €4.95 fee) (OP2)
+    - [x] Mask all sensitive internal tokens (`fraud_flag`, `risk_score`) (OP3)
+    - [x] Include ticket reference ID and support SLA disclaimer (OP5, KB-11)
 
 ### Verification Check:
-- [ ] Unit tests for Triage Agent on sample tickets (ensuring clean JSON parsing).
-- [ ] Retrieval tests verifying valid citations for return policies and `REFUSE_NO_POLICY` for ungrounded queries.
+- [x] Unit tests for Triage Agent on sample tickets (ensuring clean JSON parsing).
+- [x] Retrieval tests verifying valid citations for return policies and `REFUSE_NO_POLICY` for ungrounded queries.
 
 ---
 

@@ -89,6 +89,7 @@ def test_configuration_loading():
     print("  [OK] Evaluation Clock is locked to Tuesday, Oct 20, 2026 (2026-10-20).")
     print(f"  [OK] Azure OpenAI Configured: {config_status['azure_openai_endpoint']}")
     print(f"  [OK] Cohere Key Configured: {config_status['cohere_key']}")
+    print(f"  [OK] LangSmith Tracing Configured: {config_status['langsmith_tracing']}")
 
 
 if __name__ == "__main__":

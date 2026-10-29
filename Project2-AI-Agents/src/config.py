@@ -43,10 +43,22 @@ AZURE_OPENAI_EMBEDDING_DEPLOYMENT = os.getenv(
 COHERE_API_KEY = os.getenv("COHERE_API_KEY") or os.getenv("COHERE_KEY")
 
 # ── LangSmith Observability & Debugging ───────────────────────────────────────
-LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2", "true").lower() == "true"
-LANGCHAIN_ENDPOINT = os.getenv("LANGCHAIN_ENDPOINT", "https://api.smith.langchain.com")
-LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
-LANGCHAIN_PROJECT = os.getenv("LANGCHAIN_PROJECT", "resolve-multi-agent")
+LANGCHAIN_TRACING_V2 = (
+    os.getenv("LANGCHAIN_TRACING_V2")
+    or os.getenv("LANGSMITH_TRACING")
+    or "true"
+).lower() == "true"
+LANGCHAIN_ENDPOINT = (
+    os.getenv("LANGCHAIN_ENDPOINT")
+    or os.getenv("LANGSMITH_ENDPOINT")
+    or "https://api.smith.langchain.com"
+)
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY") or os.getenv("LANGSMITH_API_KEY")
+LANGCHAIN_PROJECT = (
+    os.getenv("LANGCHAIN_PROJECT")
+    or os.getenv("LANGSMITH_PROJECT")
+    or "resolve-multi-agent"
+)
 
 # Set OS environment variables for LangChain SDK auto-instrumentation
 if LANGCHAIN_TRACING_V2 and LANGCHAIN_API_KEY:
